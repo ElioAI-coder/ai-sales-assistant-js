@@ -1,3 +1,7 @@
+# Ignora l'intero progetto Python legacy di riferimento
+# Questa regola è fondamentale per tenere pulito il repository Git.
+/python_legacy/
+
 # Ignora tutte le cartelle di dipendenze di Node.js a qualsiasi livello
 # Questa è la regola più importante per evitare di bloccare Git.
 node_modules/
