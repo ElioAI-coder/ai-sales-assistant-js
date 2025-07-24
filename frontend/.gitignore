@@ -1,0 +1,22 @@
+# Dipendenze di Node.js
+# Anche se già ignorata dal file principale, è buona norma ripeterlo.
+/node_modules
+
+# Cartelle di build e cache specifiche di Nuxt e Vite
+/.nuxt
+/.output
+/dist
+/dist-ssr
+
+# File di log
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# Variabili d'ambiente
+.env
+.env.*
+!.env.example
+
+# File di configurazione specifici dell'ambiente locale
+.vscode/

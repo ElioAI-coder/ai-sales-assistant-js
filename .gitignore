@@ -1,0 +1,24 @@
+# Ignora tutte le cartelle di dipendenze di Node.js a qualsiasi livello
+# Questa è la regola più importante per evitare di bloccare Git.
+node_modules/
+
+# Ignora tutte le cartelle di output compilato o di build
+dist/
+.nuxt/
+.output/
+
+# File di configurazione degli editor e di sistema
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# File di log
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# Variabili d'ambiente che NON devono mai essere salvate su Git
+.env
+.env.*
+!.env.example
