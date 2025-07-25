@@ -1,180 +1,197 @@
-# PRIORISATION MOSCOW - ASSISTANT COMMERCIAL IA
+DOCUMENTO 1: MOSCOW ANALYSIS
+markdown
+# MOSCOW ANALYSIS - AI SALES ASSISTANT REAL ESTATE FRANCE
 
-## 🎯 PROJET : Plateforme SaaS de vente B2B multi-produits assistée par IA
+##  PROJECT: Plateforme SaaS d'Intelligence Commerciale pour l'Immobilier Français
 
----
+###  **MUST HAVE - Core MVP (Sprint 1-4)**
 
-## 🔴 **M = MUST HAVE** *(Obligatoire, non-négociable)*
+#### **Infrastructure SaaS Multi-Tenant**
+- **Architecture NestJS** avec TypeScript côté backend
+- **Frontend Nuxt 3** avec Tailwind CSS
+- **Supabase** pour base de données PostgreSQL + Realtime
+- **Row Level Security** pour isolation des données par agence
+- **Authentification** sécurisée avec Supabase Auth
 
-### **Architecture SaaS multi-tenant**
-- **Gestion multi-entreprises** sur une seule instance
-- **Isolation complète des données** par client
-- **Système d'abonnements** et facturation automatique
-- **Onboarding automatisé** nouveaux clients
+#### **Intelligence Immobilière France**
+- **Analyse des agences** : taille, spécialisation, performance digitale
+- **Scoring intelligent** des prospects basé sur :
+  - Maturité digitale actuelle
+  - Volume de transactions
+  - Présence sur portails (SeLoger, LeBonCoin, PAP)
+  - Signaux d'achat (recherches, comparaisons CRM)
+- **Détection des moments clés** :
+  - Rentrée septembre (planification annuelle)
+  - Janvier (nouveaux budgets)
+  - Baisse du marché (besoin d'efficacité)
 
-### **Gestion multilingue**
-- **Interface adaptative** (FR, EN, IT, ES, DE)
-- **Messages IA localisés** selon langue client
-- **Templates par langue/culture** (approche commerciale locale)
-- **Timezone et formats** locaux (dates, monnaies)
+#### **Import et Enrichissement des Données**
+- **Import CSV/Excel** des contacts agences
+- **Enrichissement automatique** via APIs publiques :
+  - SIREN/SIRET pour données entreprise
+  - Scraping sites agences pour portfolio
+  - Analyse présence digitale
+- **Déduplication intelligente** par email/téléphone/SIRET
 
-### **Import et gestion données flexibles**
-- **Import multiples** : CSV/Excel programmable + APIs + scraping externe
-- **Saisie manuelle** prospects (foires, contacts directs, réseaux)
-- **Enrichissement automatique** optionnel et configurable
-- **Connecteurs externes** pour outils scraping tiers (ton collègue)
+#### **Génération de Messages IA**
+- **Templates spécifiques immobilier** :
+  - Agents indépendants vs Agences
+  - Résidentiel vs Commercial
+  - Neuf vs Ancien
+- **Personnalisation contextuelle** :
+  - Référence aux biens en portefeuille
+  - Mention des outils actuels
+  - Adaptation au cycle immobilier
+- **Multilingue** : Français prioritaire, Anglais pour luxe international
 
-### **Configuration produit/marché par client**
-- **Paramétrage du produit à vendre** (agents IA, matites, formations, etc.)
-- **Définition du marché cible** (immobilier, écoles, restaurants, etc.)
-- **Templates de messages** adaptables selon produit/secteur/langue
-- **Critères de scoring** personnalisables par type de vente
+#### **Suivi ROI et Performance**
+- **Dashboard temps réel** :
+  - Taux d'ouverture par segment
+  - Conversions prospect  demo  client
+  - ROI calculé automatiquement
+- **Attribution revenue** : quel message génère quelles ventes
+- **Rapports hebdomadaires** automatiques par email
 
-### **Import et intégration données**
-- **Import programmable** CSV/Excel (automatique, quotidien, hebdomadaire, manuel)
-- **Mapping intelligent des champs** avec détection automatique
-- **Connexion directe bases externes** (APIs, webhooks, FTP)
-- **Enrichissement automatique intelligent** :
-  - Recherche site web via nom entreprise + Google
-  - Détection profil LinkedIn via nom + entreprise
-  - Recherche réseaux sociaux (Twitter, Facebook entreprise)
-  - APIs d'enrichissement (Hunter.io, Clearbit, etc.)
-- **Validation et déduplication** automatique des prospects
+#### **Resilience & Reliability**
+- **Circuit Breaker** pour toutes les API externes (OpenAI, SendGrid, INSEE)
+- **Rate Limiting** par endpoint et par company
+- **Retry Logic** avec exponential backoff
+- **Fallback Strategies** pour services critiques
+- **Queue Management** pour opérations asynchrones
 
-### **Intelligence artificielle adaptative**
-- Intégration OpenAI API pour analyse prospects
-- **Génération de messages contextuels** selon produit/secteur
-- **Scoring intelligent** basé sur correspondance produit-prospect
-- **Adaptation automatique** des stratégies selon les résultats
+#### **Caching Strategy Multi-Niveau**
+- **L1 Cache** : Mémoire in-process (60 secondes)
+- **L2 Cache** : Redis distributed (1 heure)
+- **L3 Cache** : Database persistent (24 heures)
+- **Cache Invalidation** : Event-driven
+- **Cache Warmup** : Pre-loading données critiques
 
-### **Interface de configuration**
-- **Module de paramétrage produit** (description, prix, bénéfices clés)
-- **Définition marché cible** (secteurs, critères, mots-clés)
-- **Gestion des templates** de messages par produit/canal
-- Dashboard web responsive multilingue (français prioritaire)
+#### **Monitoring & Observability**
+- **Health Checks** : Database, Redis, External APIs
+- **Metrics Collection** : Prometheus + Grafana
+- **Distributed Tracing** : Jaeger
+- **Error Tracking** : Sentry integration
+- **Audit Logging** : Actions sensibles tracées
 
-### **Sécurité et conformité**
-- **Authentification robuste** (2FA, gestion mots de passe)
-- **Chiffrement données** en base et en transit
-- **Conformité RGPD** (consentements, suppression, audit)
-- **Backup automatique** et récupération d'urgence
-- **Logs d'audit** pour traçabilité complète
+#### **Resource Management**
+- **Usage Limits** par company et par plan
+- **Cost Tracking** : OpenAI tokens, emails envoyés
+- **Quota Enforcement** : Blocking après limites
+- **Usage Analytics** : Dashboard consommation
+- **Billing Alerts** : Notifications dépassement
 
-### **Gestion des erreurs et monitoring**
-- **Système d'alertes** en cas de panne/erreur
-- **Monitoring performance** (temps réponse, uptime)
-- **Gestion des quotas** OpenAI et limites API
-- **Recovery automatique** des processus échoués
+#### **Billing & Subscription Management**
+- **Stripe Integration** pour paiements sécurisés
+- **Gestion automatique** des abonnements mensuels
+- **Système de relances** progressives
+- **Suspension automatique** après impayés
+- **Portail client** pour factures et paiements
+- **Webhooks Stripe** pour événements real-time
 
----
+### **MUST HAVE - Aggiungere:**
+- **Circuit Breaker** per tutte le API esterne
+- **Rate Limiting** per endpoint
+- **Caching Strategy** multi-livello
+- **Health Checks** dettagliati
+- **Audit Logging** completo
 
-## 🟡 **S = SHOULD HAVE** *(Apporte de la valeur, peut être fait plus tard)*
+###  **SHOULD HAVE - Avantage Concurrentiel (Sprint 5-8)**
 
-### **Automatisation avancée**
-- Rappels automatiques après X jours sans réponse
-- Escalation automatique des canaux (Email → LinkedIn → Appel)
-- Notifications par email des tâches quotidiennes
+#### **Event-Driven Architecture**
+- **Event Bus** avec Redis Streams
+- **Event Store** dans Supabase pour historique complet
+- **Processing asynchrone** des tâches lourdes
+- **Webhooks** pour intégrations externes
 
-### **Calendrier intégré**
-- Intégration Google Calendar pour rappels
-- Programmation automatique des follow-ups
-- Vue calendrier des prospects à recontacter
+#### **Intégrations Écosystème Immobilier**
+- **Portails immobiliers** :
+  - Export automatique vers SeLoger Pro
+  - Synchronisation annonces
+  - Import leads portails
+- **CRM Immobilier** :
+  - Apimo, Perizia, Hektor
+  - Sync bidirectionnelle contacts
+  - Historique interactions
 
-### **Analytics et reporting**
-- Taux de réponse par canal
-- Statistiques de conversion
-- ROI par prospect/campagne
-- Export des données pour reporting
+#### **Intelligence Comportementale**
+- **Lead scoring avancé** basé sur :
+  - Interactions email/site web
+  - Recherches effectuées
+  - Demandes d'information
+- **Prédiction** meilleur moment de contact
+- **Recommandations** d'approche commerciale
 
----
+#### **Campagnes Multi-Canal**
+- **Email** : séquences automatisées
+- **SMS** : rappels et alertes
+- **LinkedIn** : messages personnalisés
+- **Orchestration** intelligente des canaux
 
-## 🟢 **C = COULD HAVE** *(Enrichit l'expérience utilisateur)*
+###  **COULD HAVE - Leadership Marché (Sprint 9-12)**
 
-### **Enrichissement données avancé**
-- **APIs d'enrichissement** (Hunter.io, Clearbit, Apollo)
-- **Recherche web automatique** sites et réseaux sociaux
-- **Scraping LinkedIn respectueux** (profils publics seulement)
-- **Mise à jour automatique** des données obsolètes
+#### **Marketplace de Templates**
+- **Bibliothèque** de messages performants
+- **Partage** entre utilisateurs (opt-in)
+- **Analytics** sur performance templates
+- **Système de rewards** pour contributeurs
 
-### **Interface améliorée**
-- App mobile native
-- Mode sombre/clair
-- Notifications push
-- Recherche avancée et filtres
+#### **Intelligence Marché Avancée**
+- **Données marché** par ville/quartier :
+  - Prix au m²
+  - Délais de vente
+  - Taux de commission
+- **Analyse concurrentielle** locale
+- **Tendances** et prédictions marché
 
-### **Support et formation utilisateurs**
-- **Documentation intégrée** (aide contextuelle)
-- **Tutoriels vidéo** pour onboarding
-- **Support technique** intégré (chat, tickets)
-- **Templates pré-configurés** par secteur/produit
+#### **Features IA Avancées**
+- **Coach IA** pour améliorer les messages
+- **A/B testing** automatique
+- **Optimisation** continue par ML
+- **Chatbot** pour qualification leads
 
-### **API et intégrations avancées**
-- **API publique** pour intégrations clients
-- **Webhooks** pour événements temps réel
-- **Connecteurs populaires** (Zapier, Make, etc.)
-- **Export/Import** données standardisés
+#### **Mobile et Intégrations**
+- **App mobile** (PWA Nuxt)
+- **API publique** RESTful
+- **Webhooks** Zapier/Make
+- **Widget** intégrable site agence
 
----
+###  **WON'T HAVE - Hors Périmètre**
 
-## ⚪ **W = WON'T HAVE** *(Non prioritaire - éviter complexity creep)*
+- **Gestion complète des biens** (ce n'est pas un logiciel de transaction)
+- **Visite virtuelle** ou 3D
+- **Signature électronique** de mandats/compromis
+- **Comptabilité** d'agence
+- **Téléphonie VOIP** intégrée
+- **Gestion des diagnostics** immobiliers
 
-### **Over-engineering technique**
-- **Scraping automatique** LinkedIn (risques légaux)
-- **IA propriétaire** (OpenAI suffit largement)
-- **Custom ML models** (overkill pour MVP)
-- **Blockchain/Web3** intégrations (hype inutile)
+##  Métriques de Succès
 
-### **Features enterprise prématurées**
-- **Multi-tenancy complexe** (simple company isolation suffit)
-- **Advanced workflow engine** (keep it simple)
-- **Complex role-based permissions** (admin/user suffit)
-- **Custom development platform** (focus core business)
+### **KPIs Techniques**
+- Uptime: 99.9%
+- Temps de réponse API: <200ms
+- Taux d'erreur: <0.1%
+- Délai génération message IA: <3s
 
-### **Intégrations marginales**
-- **Obscure CRM platforms** (focus big 4: Salesforce, HubSpot, Pipedrive, Zoho)
-- **Social media automation** beyond LinkedIn/Email
-- **Advanced telephony** (trop de complexity)
-- **Video call automation** (pas le core business)
+### **KPIs Business**
+- Time-to-value: <24h
+- Taux d'adoption: >80% après onboarding
+- Churn mensuel: <5%
+- NPS: >50
 
----
+### **KPIs Immobilier**
+- Taux de conversion prospect  client: >15%
+- Augmentation leads qualifiés: +40%
+- ROI moyen par agence: 5-10x
+- Temps de cycle de vente: -30%
 
-## 📋 **MVP BUSINESS-FIRST REDÉFINI**
 
-Le **Minimum Viable Product** comprend désormais les fonctionnalités **MUST HAVE** orientées business :
-
-### **🚀 CORE VALUE PROPOSITION :**
-1. **Setup 5 minutes** avec onboarding guidé business
-2. **CRM integration** transparente (zéro disruption)  
-3. **Messages IA** avec templates sectoriels pré-testés
-4. **GDPR compliance** automatique et transparente
-5. **ROI dashboard** orienté business (pas technique)
-
-### **🎯 USER EXPERIENCE :**
-```
-Manager arrive → Setup 5 min → Premier message envoyé → 
-ROI visible J+1 → CRM sync automatique → Équipe adoptée J+7
-```
-
-### **💼 BUSINESS VALIDATION :**
-- **Time-to-value :** 24h (vs 2 semaines)
-- **Adoption rate :** 90%+ (vs 30% solutions techniques)  
-- **Churn risk :** Faible (intégration native workflow)
-
----
-
-## 🔄 **IMPACT SUR PLANNING DÉVELOPPEMENT**
-
-### **PRIORISATION REVUE :**
-- **Sprint 1-2 :** Onboarding guidé + CRM connectors
-- **Sprint 3-4 :** Templates library + IA transparente  
-- **Sprint 5-6 :** GDPR automatique + Dashboard business
-- **Sprint 7-8 :** Polish + launch MVP
-
-### **RESOURCES REALLOCATION :**
-- **+40% effort** : Intégrations CRM et onboarding UX
-- **-30% effort** : Configuration technique complexe
-- **+20% effort** : Compliance et sécurité automatique
-
----
-
-*Le MOSCOW business-first garantit un produit immédiatement vendable et adoptable plutôt qu'une prouesse technique.*
+MUST HAVE
+├── Infrastructure SaaS Multi-Tenant
+├── Intelligence Immobilière France
+├── Import et Enrichissement des Données
+├── Génération de Messages IA
+├── Suivi ROI et Performance
+├── Resilience & Reliability          ← NOUVEAU
+├── Caching Strategy Multi-Niveau     ← NOUVEAU
+├── Monitoring & Observability        ← NOUVEAU
+└── Resource Management               ← NOUVEAU
